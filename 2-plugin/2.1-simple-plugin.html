@@ -5,7 +5,7 @@ const RulesPlugin = {
   install (Vue) {
     Vue.mixin({
       created () {
-        if (this.$options.hasOwnProperty('rules')) {
+        if (this.$options.rules) {
           // Do something with rules
           const rules = this.$options.rules
           Object.keys(rules).forEach(key => {
@@ -24,4 +24,15 @@ const RulesPlugin = {
 }
 
 Vue.use(RulesPlugin)
+
+
+const vm = new Vue({
+  data: { age: 18 },
+  rules: {
+    age: {
+      validate: value => value >= 18,
+      message: '未满18岁禁止观看'
+    }
+  }
+})
 </script>
